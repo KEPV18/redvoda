@@ -3,10 +3,10 @@
 session_start();
 
 // بيانات الاتصال بقاعدة البيانات
-$servername = "sql303.infinityfree.com";
-$username = "if0_36268646";
-$password = "KbQYWss53mctMoX";
-$database = "if0_36268646_test";
+$servername = "tesy";
+$username = "test";
+$password = "test";
+$database = "test";
 $port = 3306;
 
 // إنشاء اتصال
