@@ -8,73 +8,73 @@
     <link rel="icon" href="08f7ff2ff1b807d2a8272c8a05b94a90.jpg" type="image/jpg">
     <style>
         /* تنسيق المربع الحواري */
-.modal {
-  display: none; /* أخفاء المربع الحواري افتراضيًا */
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.4); /* لون خلفية شفاف */
-  color:black;
-}
+        .modal {
+            display: none; /* أخفاء المربع الحواري افتراضيًا */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4); /* لون خلفية شفاف */
+            color: black;
+        }
 
-/* تنسيق محتوى المربع الحواري */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
+        /* تنسيق محتوى المربع الحواري */
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px;
+        }
 
-/* تنسيق زر الإغلاق */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
+        /* تنسيق زر الإغلاق */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
 
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
-/* تنسيق الزر الموافق */
-#confirmBtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  margin-top: 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+        /* تنسيق الزر الموافق */
+        #confirmBtn {
+            background-color: #e60000;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-#confirmBtn:hover {
-  background-color: #45a049;
-}
+        #confirmBtn:hover {
+            background-color: #cc0000;
+        }
 
         body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #0a878d;
-    direction: rtl;
-    color: #fff2f2;
-    font-size: 30px;
-}
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            direction: rtl;
+            color: #333;
+        }
 
         header {
-            background-color: #333; /* لون خلفية الهيدر */
+            background-color: #e60000; /* لون خلفية الهيدر */
             color: #fff; /* لون النص في الهيدر */
-            
             text-align: center;
+            padding: 20px 0;
         }
 
         .header-content {
@@ -87,18 +87,16 @@
         .logo img {
             width: 150px; /* تكبير حجم اللوجو */
             height: 150px;
-            float:left;
         }
 
-        h1{float:right;}
-
-        img{    margin-right: 20px;
-}
+        h1 {
+            margin: 0;
+        }
 
         nav ul {
             list-style-type: none;
             padding: 0;
-            margin-top: 10px; /* تباعد بسيط بين اللينكات */
+            margin: 20px 0; /* تباعد بسيط بين اللينكات */
         }
 
         nav ul li {
@@ -113,12 +111,11 @@
             border: 1px solid #fff;
             border-radius: 5px;
             font-size: 18px; /* تكبير حجم الخط */
-            margin-top: 10px; /* تباعد بين الزرين */
-            background-color:#0a878d; /* خلفية الزر شفافة */
+            background-color: #e60000; /* خلفية الزر */
         }
 
         nav ul li a:hover {
-            background-color: #000; /* تغيير لون خلفية الزر عند التحويم */
+            background-color: #cc0000; /* تغيير لون خلفية الزر عند التحويم */
         }
 
         .rectangle-container {
@@ -147,9 +144,10 @@
         }
 
         .services {
-            background-color: #333; /* لون خلفية العنوان */
+            background-color: #e60000; /* لون خلفية العنوان */
             color: #fff; /* لون العنوان */
             padding: 20px;
+            text-align: center;
         }
 
         .prices {
@@ -166,19 +164,17 @@
         }
 
         .prices th {
-            background-color: #333;
+            background-color: #e60000;
             color: #fff;
         }
 
         .terms {
-            
             padding: 20px;
             margin-top: 20px;
-            
         }
 
         footer {
-            background-color: #333; /* لون خلفية الفوتر */
+            background-color: #e60000; /* لون خلفية الفوتر */
             color: #fff; /* لون النص في الفوتر */
             padding: 20px;
             text-align: center;
@@ -193,7 +189,6 @@
             border: 1px solid #fff;
             border-radius: 5px;
             margin: 0 5px;
-            
         }
 
         footer a:hover {
@@ -210,26 +205,19 @@
             text-decoration: none;
         }
 
-
-
         .subscribe-now {
-             /* لون النص */
-            border: 1px solid ;
+            border: 1px solid;
             border-radius: 5px;
             padding: 10px 20px;
             font-size: 150%; /* حجم الخط */
             margin-top: 20px;
             text-align: center;
-            background-color:#333;
+            background-color: #e60000;
         }
 
         .subscribe-now a {
-            /* لون النص */
-            
             text-decoration: none;
-            color:white;
-             /* لون النص */
-        
+            color: white;
             border-radius: 5px;
             padding: 10px 20px;
             font-size: 150%; /* حجم الخط */
@@ -238,26 +226,26 @@
         }
 
         .subscribe-now a:hover {
-            background-color:green; /* لون خلفية الزر عند التحويم */
+            background-color: green; /* لون خلفية الزر عند التحويم */
             color: white; /* لون النص عند التحويم */
         }
     </style>
 </head>
 
 <body>
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>التحويل للنظام غير متاح الآن لكن يمكنك الاشتراك معنا وسوف يتم تحويلك في وقت فتح التحويل للنظام وإذا كنت مشتركًا قديمًا معنا يمكنك تسجيل حساب برقمك وسوف تظهر لك بيانات حسابك واشتراكك بالكامل.</p>
-    <button id="confirmBtn">موافق</button>
-  </div>
-</div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>التحويل للنظام غير متاح الآن لكن يمكنك الاشتراك معنا وسوف يتم تحويلك في وقت فتح التحويل للنظام وإذا كنت مشتركًا قديمًا معنا يمكنك تسجيل حساب برقمك وسوف تظهر لك بيانات حسابك واشتراكك بالكامل.</p>
+            <button id="confirmBtn">موافق</button>
+        </div>
+    </div>
 
     <header>
         <div class="header-content">
             <div class="logo">
                 <img src="08f7ff2ff1b807d2a8272c8a05b94a90.jpg" alt="الشعار">
-                <h1>Red Voda </h1> <!-- تغيير حجم العنوان -->
+                <h1>Red Voda</h1>
             </div>
         </div>
     </header>
@@ -298,7 +286,7 @@
                 <td>$220 كاش</td>
             </tr>
             <tr>
-                <td>40 جيجا و 4000 دقيقة</td>
+                <td>40 جيج�� و 4000 دقيقة</td>
                 <td>$250 كاش</td>
             </tr>
             <tr>
@@ -319,13 +307,15 @@
     <div class="terms">
         <h2>الشروط والأحكام</h2>
         <p>
-            ملحوظه: صلاحية الباقة شهر.
-            <br>ملحوظة: الميجابيتس بالميجا مش بالسوبر<br>.
-            ملحوظة: الدقايق لكل الشبكات الدقيقة بدقيقة<br>.
-            بتحجز معايا عن طريق رقمك وباسوردك بتوع تطبيق انا فودافون <br>
-            ولازم ميكونش خطك علية سلفني او نوتة<br> ولو عايز تتأكد هتطلب *155# وتشوف المديونية على الخط كام وتسددها<br>. خطك نضيف هتكلمني واضيفك ونظامك بيتغير خلال ساعتين<br> لنظام ريد ليمت نظام فاتورتة بتكون 25ج كل سنة. بتنزل بعد اول شهر ليك فى النظام .<br>
-            ملحوظة: اى باقة فليكس كانت معاك وانت بتحول للنظام ده هتتلغي<br> او اى باقة انترنت.
-            لو حبيت تلغي النظام <br>هتروح فرع فودافون وتقولة عايز احول نظام خطي لنظام كارت وهياخد منك 50ج رسوم</p>
+            ملحوظة: صلاحية الباقة شهر.
+            <br>ملحوظة: الميجابيتس بالميجا مش بالسوبر.
+            <br>ملحوظة: الدقايق لكل الشبكات الدقيقة بدقيقة.
+            <br>بتحجز معايا عن طريق رقمك وباسوردك بتوع تطبيق انا فودافون.
+            <br>لازم ميكونش خطك علية سلفني او نوتة. لو عايز تتأكد هتطلب *155# وتشوف المديونية على الخط كام وتسددها.
+            <br>خطك نضيف هتكلمني واضيفك ونظامك بيتغير خلال ساعتين لنظام ريد ليمت نظام فاتورتة بتكون 25ج كل سنة. بتنزل بعد اول شهر ليك فى النظام.
+            <br>ملحوظة: اى باقة فليكس كانت معاك وانت بتحول للنظام ده هتتلغي او اى باقة انترنت.
+            <br>لو حبيت تلغي النظام هتروح فرع فودافون وتقولة عايز احول نظام خطي لنظام كارت وهياخد منك 50ج رسوم.
+        </p>
     </div>
 
     <footer>
@@ -338,36 +328,29 @@
         </div>
     </footer>
     <script>
-        // احصل على المربع الحواري
-var modal = document.getElementById("myModal");
+        var modal = document.getElementById("myModal");
 
-// احصل على زر الإغلاق
-var closeBtn = document.getElementsByClassName("close")[0];
+        var closeBtn = document.getElementsByClassName("close")[0];
 
-// عند فتح الصفحة، أظهر المربع الحواري
-window.onload = function() {
-  modal.style.display = "block";
-}
+        window.onload = function() {
+            modal.style.display = "block";
+        }
 
-// عند الضغط على زر الإغلاق، أخفي المربع الحواري
-closeBtn.onclick = function() {
-  modal.style.display = "none";
-}
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
 
-// عند النقر خارج المربع الحواري، أخفي المربع الحواري
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
 
-// عند الضغط على زر الموافق، أخفي المربع الحواري
-document.getElementById("confirmBtn").onclick = function() {
-  modal.style.display = "none";
-};
-
-
+        document.getElementById("confirmBtn").onclick = function() {
+            modal.style.display = "none";
+        };
     </script>
 </body>
 
+</html>
 </html>

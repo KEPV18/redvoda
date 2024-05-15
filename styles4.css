@@ -27,13 +27,9 @@ h1 {
     margin-bottom: 20px;
 }
 
-label {
-    display: block;
-    margin-bottom: 10px;
-}
-
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="tel"] {
     width: calc(100% - 22px);
     padding: 10px;
     margin-bottom: 10px;
@@ -41,7 +37,7 @@ input[type="password"] {
     border: 1px solid #ccc;
 }
 
-input[type="submit"] {
+.button {
     width: 100%;
     background-color: #007bff;
     color: #fff;
@@ -50,14 +46,14 @@ input[type="submit"] {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    display: inline-block; /* إظهار الزر بشكل بلوك */
-    text-align: center; /* محاذاة النص في الوسط */
-    text-decoration: none; /* إزالة التزيين الافتراضي */
-    font-size: 16px; /* حجم الخط */
-    line-height: 1; /* ارتفاع السطر */
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 1;
 }
 
-input[type="submit"]:hover {
+.button:hover {
     background-color: #0056b3;
 }
 
@@ -69,12 +65,12 @@ footer {
     color: #fff;
     padding: 10px 0;
     text-align: center;
-    font-size: 18px; /* حجم الخط */
+    font-size: 18px;
 }
 
 footer a {
-    color: #ff0000; /* لون الرابط الأحمر */
-    text-decoration: none; /* إزالة التزيين الافتراضي */
+    color: #ff0000;
+    text-decoration: none;
 }
 
 .sr-only {
@@ -89,7 +85,7 @@ footer a {
 }
 
 .register-message {
-    color:black;
+    color: black;
     font-size: 14px;
     margin-top: 10px;
     text-align: center;
@@ -97,45 +93,13 @@ footer a {
 
 .register-link {
     padding: 10px 20px;
-    background-color: #20d8c0; /* لون خلفية الزر */
-    color: #fff; /* لون النص داخل الزر */
+    background-color: #20d8c0;
+    color: #fff;
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease;
 }
 
 .register-link:hover {
-    background-color: #cc0000; /* تغيير لون الخلفية عند التحويل بالماوس */
-}
-
-
-
-.login-button {
-    width: 100%;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: inline-block; /* إظهار الزر بشكل بلوك */
-    text-align: center; /* محاذاة النص في الوسط */
-    text-decoration: none; /* إزالة التزيين الافتراضي */
-    font-size: 16px; /* حجم الخط */
-    line-height: 1; /* ارتفاع السطر */
-}
-
-.login-button:hover {
-    background-color: #0056b3;
-}
-
-
-#phone {
-
-    width: calc(100% - 22px);
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    background-color: #cc0000;
 }

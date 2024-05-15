@@ -18,8 +18,8 @@ if ($conn->connect_error) {
 }
 
 // استخراج البيانات من النموذج
-$phone = $_POST['phone'];
-$password = $_POST['password'];
+$phone = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_STRING);
+$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
 // استعلام SQL للتحقق من وجود الهاتف في قاعدة البيانات
 $sql = "SELECT * FROM users WHERE phone = ?";
@@ -33,9 +33,10 @@ if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $hashed_password = $row['encrypted_password'];
 
-    // التحقق من صحة كلمة المرور
+    // ��تحقق من صحة كلمة المرور
     if (password_verify($password, $hashed_password)) {
         // كلمة المرور صحيحة، قم بتوجيه المستخدم إلى صفحة HOME.PHP
+        session_regenerate_id(true); // تجديد معرف الجلسة لمنع هجمات اختطاف الجلسة
         $_SESSION['phone'] = $phone; // تخزين رقم الهاتف في الجلسة
         header("Location: home.php");
         exit();
@@ -52,4 +53,8 @@ if ($result->num_rows > 0) {
 
 // إغلاق الاتصال بقاعدة البيانات
 $conn->close();
+
+// Set security headers
+header('X-Frame-Options: DENY');
+header('X-XSS-Protection: 1; mode=block');
 ?>
