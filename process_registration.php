@@ -1,10 +1,10 @@
 <?php
 // بيانات الاتصال بقاعدة البيانات
-$servername = "test";
-$username = "test";
-$password = "test";
-$database = "test";
-$port = 3306;
+$servername = "sql303.infinityfree.com"; // اسم المضيف (Hostname)
+$username = "if0_36202177"; // اسم المستخدم (Username)
+$password = "hTxzxUqTNx"; // كلمة المرور (Password)
+$database = "if0_36202177_red"; // اسم قاعدة البيانات (Database Name)
+$port = 3306; // اختياري: رقم المنفذ (Port)
 
 // إنشاء اتصال
 $conn = new mysqli($servername, $username, $password, $database, $port);
