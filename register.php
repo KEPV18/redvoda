@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <h1>تسجيل حساب جديد</h1>
-        <form action="process_registration.php" method="post">
+        <form id="registrationForm">
             <label for="phone" class="sr-only">رقم الهاتف:</label>
             <input type="text" id="phone" name="phone" placeholder="رقم الهاتف" required>
             <label for="password" class="sr-only">كلمة المرور:</label>
@@ -21,37 +21,44 @@
                 هل لديك حساب؟ <a href="login.php">سجل دخول من هنا</a>
             </div>
         </form>
+        <div id="message"></div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('form');
-            const phone = document.getElementById('phone');
-            const password = document.getElementById('password');
-            const submitBtn = document.getElementById('submit');
+            const form = document.getElementById('registrationForm');
+            const messageDiv = document.getElementById('message');
 
-            function updateMessage(message, smallMessage = "", backgroundColor = "") {
-                const messageElement = document.getElementById('message');
-                const smallMessageElement = document.getElementById('smallMessage');
-                if (messageElement) messageElement.innerHTML = message;
-                if (smallMessageElement) smallMessageElement.innerHTML = smallMessage;
-                if (backgroundColor) document.body.style.background = backgroundColor;
+            function showMessage(messages, isSuccess) {
+                messageDiv.innerHTML = "";
+                messages.forEach(msg => {
+                    const p = document.createElement('p');
+                    p.textContent = msg;
+                    p.style.color = isSuccess ? 'green' : 'red';
+                    messageDiv.appendChild(p);
+                });
             }
 
-            phone.addEventListener("input", () => updateMessage('Enter your phone number', "", '#88C9E8'));
-            password.addEventListener('input', () => updateMessage('Choose your password', "", '#D5F3A6'));
-            password.addEventListener('keyup', () => {
-                const lengthMessage = password.value.length <= 3 ? "Make it strong" :
-                                      password.value.length < 10 ? "Strong as a bull!" :
-                                      "It's unbreakable!!!";
-                updateMessage('Choose your password', lengthMessage);
-            });
-
-            submitBtn.addEventListener('mouseover', () => updateMessage("You're a click away", "Do it. That's what you are here for.", '#FCEFA6'));
-            submitBtn.addEventListener('click', (event) => {
+            form.addEventListener('submit', function(event) {
                 event.preventDefault();
-                form.innerHTML = '<h1>Good job!</h1><p class="success-message">There is a confirmation link waiting in your email inbox.</p>';
-                document.body.style.background = '#D7F5DE';
+
+                const formData = new FormData(form);
+                fetch('process_registration.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    showMessage(data.messages, data.success);
+                    if (data.success) {
+                        setTimeout(() => {
+                            window.location.href = 'login.php';
+                        }, 3000);
+                    }
+                })
+                .catch(error => {
+                    showMessage(['حدث خطأ أثناء التسجيل. حاول مرة أخرى.'], false);
+                });
             });
         });
     </script>
@@ -63,5 +70,4 @@
         </p>
     </footer>
 </body>
-</html>
 </html>

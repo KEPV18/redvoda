@@ -1,14 +1,25 @@
 <?php
-// Start the session
+// Initialize the session.
+// If you are using session_name("something"), don't forget it now!
 session_start();
 
-// إفراغ الجلسة
+// Unset all of the session variables.
 $_SESSION = array();
 
-// تدمير الجلسة
+// If it's desired to kill the session, also delete the session cookie.
+// Note: This will destroy the session, and not just the session data!
+if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
+}
+
+// Finally, destroy the session.
 session_destroy();
 
-// إعادة توجيه المستخدم إلى صفحة تسجيل الدخول
-header("Location: index.php");
-exit();
+// Redirect to index.php
+header("Location: index.php", true, 302);
+exit();  // Ensure the script stops here
 ?>

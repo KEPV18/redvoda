@@ -1,57 +1,56 @@
 <?php
 // بيانات الاتصال بقاعدة البيانات
-$servername = "sql303.infinityfree.com"; // اسم المضيف (Hostname)
-$username = "if0_36202177"; // اسم المستخدم (Username)
-$password = "hTxzxUqTNx"; // كلمة المرور (Password)
-$database = "if0_36202177_red"; // اسم قاعدة البيانات (Database Name)
-$port = 3306; // اختياري: رقم المنفذ (Port)
+include "init.php";
 
-// إنشاء اتصال
-$conn = new mysqli($servername, $username, $password, $database, $port);
+// إعداد ترويسة JSON للتأكد من أن الرد سيتم تحليله كـ JSON في JavaScript
+header('Content-Type: application/json');
 
-// التحقق من اتصال
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// قائمة الرسائل
+$messages = [];
+
+try {
+    $messages[] = "تم الاتصال بنجاح بقاعدة البيانات.";
+} catch (PDOException $e) {
+    echo json_encode(["success" => false, "messages" => ["فشل في الاتصال بقاعدة البيانات: " . $e->getMessage()]]);
+    exit();
 }
 
 // التعامل مع الطلب القادم
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // استخراج البيانات من النموذج
     $phone = $_POST['phone'];
     $password = $_POST['password'];
 
-    // تشفير كلمة المرور
+    $messages[] = "تم استقبال البيانات بنجاح.";
+
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $messages[] = "تم تشفير كلمة المرور بنجاح.";
 
     // استعلام SQL للبحث عن وجود الرقم الهاتفي في قاعدة البيانات
-    $check_sql = "SELECT * FROM users WHERE phone = ?";
-    $stmt = $conn->prepare($check_sql);
-    $stmt->bind_param("s", $phone);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $check_sql = "SELECT * FROM users WHERE phone = :phone";
+    $stmt = $con->prepare($check_sql);
+    if ($stmt === false) {
+        echo json_encode(["success" => false, "messages" => array_merge($messages, ["خطأ في تحضير الاستعلام: " . $con->errorInfo()])]);
+        exit();
+    }
+    $stmt->execute(['phone' => $phone]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($result->num_rows > 0) {
-        // إذا وجد الرقم الهاتفي مسبقًا، عرض رسالة الخطأ
-        echo "هذا الرقم مسجل مسبقًا!";
+    $messages[] = "تم البحث عن المستخدم في قاعدة البيانات.";
+
+    if ($result) {
+        echo json_encode(["success" => false, "messages" => array_merge($messages, ["هذا الرقم مسجل مسبقًا!"])]);
     } else {
-        // إذا لم يتم العثور على الرقم الهاتفي، قم بإجراء عملية التسجيل
-        // استخدام البيانات المُدخلة في استعلام MySQL
-        $insert_sql = "INSERT INTO users (phone, password, encrypted_password) VALUES (?, ?, ?)";
-        $stmt = $conn->prepare($insert_sql);
-        $stmt->bind_param("sss", $phone, $password, $hashed_password);
-        if ($stmt->execute()) {
-            // تسجيل ناجح، قم بتوجيه المستخدم إلى صفحة تسجيل الدخول
-            header("Location: index.php");
-            exit();
-        } else {
-            // حدث خطأ أثناء التسجيل، عد إلى الصفحة الرئيسية
-            header("Location: register.php");
+        $insert_sql = "INSERT INTO users (phone, password, encrypted_password) VALUES (:phone, :password, :hashed_password)";
+        $stmt = $con->prepare($insert_sql);
+        if ($stmt === false) {
+            echo json_encode(["success" => false, "messages" => array_merge($messages, ["خطأ في تحضير الاستعلام: " . $con->errorInfo()])]);
             exit();
         }
+        if ($stmt->execute(['phone' => $phone, 'password' => $password, 'hashed_password' => $hashed_password])) {
+            echo json_encode(["success" => true, "messages" => array_merge($messages, ["تم التسجيل بنجاح!"])]);
+        } else {
+            echo json_encode(["success" => false, "messages" => array_merge($messages, ["حدث خطأ أثناء التسجيل: " . $stmt->errorInfo()])]);
+        }
     }
-    $stmt->close();
 }
-
-// إغلاق الاتصال بقاعدة البيانات
-$conn->close();
 ?>
